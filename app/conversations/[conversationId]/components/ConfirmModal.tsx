@@ -39,6 +39,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
       <div className="sm:flex sm:items-start">
         <div
           className="
+            mt-4
             mx-auto
             flex
             h-12
@@ -51,6 +52,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
             sm:mx-0
             sm:h-10
             sm:w-10
+            sm:mt-0
           ">
           <FiAlertTriangle className="h-6 w-6 text-red-600" />
         </div>
@@ -82,6 +84,8 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose }) => {
       </div>
       <div
         className="
+          flex
+          flex-col
           mt-5
           sm:mt-4
           sm:flex
