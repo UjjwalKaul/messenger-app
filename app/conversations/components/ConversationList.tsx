@@ -41,13 +41,28 @@ const ConversationList: React.FC<ConversationListProps> = ({
         return [conversation, ...current];
       });
     };
+    const updateHandler = (conversation: FullConversationType) => {
+      setItems((current) => {
+        return current.map((currentConversation) => {
+          if (currentConversation.id === conversation.id) {
+            return {
+              ...currentConversation,
+              messages: conversation.messages,
+            };
+          }
+          return currentConversation;
+        });
+      });
+    };
     pusherClient.subscribe(pusherKey);
     pusherClient.bind('conversation:new', newHandler);
+    pusherClient.bind('conversation:update', updateHandler);
     return () => {
       pusherClient.unsubscribe(pusherKey);
       pusherClient.unbind('conversation:new', newHandler);
+      pusherClient.unbind('conversation:update', updateHandler);
     };
-  }, []);
+  }, [pusherKey]);
   return (
     <>
       <GroupChatModal
